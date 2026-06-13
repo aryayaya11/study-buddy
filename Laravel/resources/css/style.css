@@ -1,0 +1,26 @@
+.transaksi-section {
+  max-width: 700px;
+  margin: 40px auto;
+}
+
+.transaksi-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.btn-kirim:hover {
+  background-color: #3e8e41;
+}
