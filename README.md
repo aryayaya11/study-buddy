@@ -1,119 +1,111 @@
-# LAPORAN PROJECT BASIS DATA
+# 🎓 Study Buddy: Platform Penyedia Jasa Tutor Privat Online
 
-## 1. Identitas Kelompok
+[![Laravel Version](https://img.shields.io/badge/Laravel-v11.x-red.svg)](https://laravel.com)
+[![MySQL](https://img.shields.io/badge/Database-MySQL-blue.svg)](https://www.mysql.com)
+[![Pentaho](https://img.shields.io/badge/ETL-Pentaho_PDI-green.svg)](https://www.hitachivantara.com/en-us/products/pentaho-platform.html)
 
-**Kelompok**: 4  
-
-**Judul Project**:  
-**STUDY BUDDY: Website Aplikasi Penyedia Jasa Tutor Privat Online Jenjang SD, SMP, dan SMA**
-
-**Anggota Kelompok**:
-1. Arfianti Fadilah Putri  
-2. Reihan Maulana Alhaidar 
-3. Shandika Maurifki Alhudi 
-4. Arya Putra Permana 
-5. Azka Saqila Rochman 
+**Study Buddy** adalah platform berbasis website yang dirancang untuk mempertemukan siswa jenjang Sekolah Dasar (SD), Sekolah Menengah Pertama (SMP), dan Sekolah Menengah Atas (SMA) dengan tutor privat online yang kompeten. Aplikasi ini memudahkan proses pencarian tutor, penjadwalan belajar, pendaftaran kelas, hingga pengelolaan pembayaran secara aman dan transparan.
 
 ---
 
-## 2. Deskripsi Singkat Project
+## ✨ Fitur Utama
 
-Study Buddy merupakan sebuah aplikasi berbasis website yang dirancang untuk menyediakan layanan tutor privat secara online bagi siswa jenjang Sekolah Dasar (SD), Sekolah Menengah Pertama (SMP), dan Sekolah Menengah Atas (SMA). Aplikasi ini bertujuan untuk mempertemukan siswa dengan tutor yang sesuai berdasarkan mata pelajaran, jenjang pendidikan, dan ketersediaan waktu, sehingga proses belajar mengajar dapat berlangsung secara efektif, fleksibel, dan terstruktur.
-
-Dalam pengembangannya, project ini berfokus pada perancangan basis data yang mampu mengelola data pengguna secara terintegrasi, meliputi data siswa, tutor, mata pelajaran, kelas, pendaftaran, jadwal, serta transaksi pembayaran. Basis data dirancang untuk mendukung kebutuhan operasional aplikasi sekaligus memudahkan pengelolaan, pencarian, dan analisis data.
-
----
-
-## 3. Tujuan
-
-Tujuan dari project basis data Study Buddy adalah:
-
-1. Merancang struktur basis data yang efisien dan terorganisir untuk mendukung sistem layanan tutor privat online.
-2. Mengelola data siswa, tutor, mata pelajaran, kelas, dan transaksi secara konsisten dan terintegrasi.
-3. Mendukung proses bisnis utama seperti pendaftaran kelas, penjadwalan, dan pencatatan pembayaran.
-4. Menyediakan fondasi data yang dapat dikembangkan lebih lanjut untuk kebutuhan analisis dan pelaporan.
+- **Pencarian Tutor Pintar**: Menemukan tutor yang sesuai berdasarkan jenjang pendidikan, mata pelajaran, rating, dan pengalaman mengajar.
+- **Manajemen Kelas & Sesi**: Pengelolaan jadwal sesi belajar yang fleksibel dan terstruktur antara siswa dan tutor.
+- **Pencatatan Transaksi & QRIS**: Pendaftaran kelas dengan sistem pencatatan transaksi terintegrasi, lengkap dengan upload bukti pembayaran (QRIS/Transfer).
+- **Dashboard Multi-Role**:
+  - **Admin**: Mengelola data pengguna (siswa, tutor), menyetujui pendaftaran, serta melihat statistik pendapatan.
+  - **Tutor**: Mengelola jadwal mengajar, profil, dan materi belajar.
+  - **Siswa**: Melihat riwayat kelas, materi, dan melakukan pembayaran.
+- **Analisis Data & ETL (Data Warehouse)**: Pengolahan data operasional dari database MySQL menggunakan Pentaho untuk diintegrasikan ke data warehouse guna kebutuhan analisis bisnis lanjutan.
 
 ---
 
-## 4. Ruang Lingkup Sistem
+## 🛠️ Teknologi yang Digunakan
 
-Ruang lingkup project ini mencakup:
-
-1. Pengelolaan data pengguna (siswa dan tutor)
-2. Pengelolaan data mata pelajaran berdasarkan jenjang SD, SMP, dan SMA
-3. Pendaftaran siswa ke kelas atau sesi bimbingan
-4. Penjadwalan kegiatan belajar
-5. Pencatatan transaksi dan pendapatan
+- **Web Framework**: Laravel (PHP) dengan Tailwind CSS untuk tampilan yang modern dan responsif.
+- **Database**: MySQL (Relational Database) untuk data transaksional aplikasi.
+- **ETL Tool**: Pentaho Data Integration (Spoon) untuk proses ekstraksi, transformasi, dan pemuatan data ke Data Warehouse.
 
 ---
 
-## 5. Teknologi yang Digunakan
+## 📂 Struktur Direktori
 
-1. Database Management System: MySQL
-2. Bahasa Query: SQL
-3. Tools Pendukung: Pentaho (untuk proses ETL dan pengolahan data lanjutan) dan Python/Laravel (Website)
-
----
-
-## 6. Struktur Direktori Project
-
-Project ini terdiri dari tiga komponen utama:
-1. **[Database](file:///d:/KULIAH/Stubud%20Final/BasDat_Kelompok%204/Database)**: Berisi file SQL backup basis data (`Kelompok D_DB.sql`) yang bersih untuk di-import.
-2. **[Laravel](file:///d:/KULIAH/Stubud%20Final/BasDat_Kelompok%204/Laravel)**: Source code aplikasi web utama menggunakan framework Laravel.
-3. **[Pentaho](file:///d:/KULIAH/Stubud%20Final/BasDat_Kelompok%204/Pentaho)**: Berisi job (`etl_dw_sb.kjb`) dan file transformasi Pentaho (`.ktr`) untuk keperluan ETL (Extract, Transform, Load) ke data warehouse.
+```bash
+BasDat_Kelompok 4/
+├── Database/          # Backup database transaksional (.sql)
+├── Laravel/           # Source code utama aplikasi web (Laravel & Tailwind)
+└── Pentaho/           # File Job (.kjb) dan Transformasi (.ktr) untuk ETL
+```
 
 ---
 
-## 7. Panduan Setup & Instalasi
+## 🚀 Panduan Setup & Instalasi
 
-### A. Konfigurasi Database (MySQL)
-1. Aktifkan **MySQL** melalui XAMPP atau DBMS lokal Anda.
-2. Buka phpMyAdmin (atau client SQL favorit Anda) dan buat database baru bernama `studybuddy_uas_fix_fix_bgtt` (atau nama database lain sesuai keinginan Anda).
-3. Import file database **[Kelompok D_DB.sql](file:///d:/KULIAH/Stubud%20Final/BasDat_Kelompok%204/Database/Kelompok%20D_DB.sql)** yang ada di dalam folder `Database`.
+### 1. Prasyarat (Prerequisites)
+Pastikan perangkat Anda sudah terinstal:
+- PHP (>= 8.2) & Composer
+- Node.js & NPM
+- MySQL Server (XAMPP/Wampserver/Docker)
+- Pentaho Data Integration (Spoon) jika ingin menjalankan ETL
 
-### B. Konfigurasi Website (Laravel)
-1. Buka terminal di folder **[Laravel](file:///d:/KULIAH/Stubud%20Final/BasDat_Kelompok%204/Laravel)**.
-2. Instal library PHP melalui Composer:
+### 2. Setup Database
+1. Buka MySQL client Anda (misal: phpMyAdmin) dan buat database baru bernama `studybuddy`.
+2. Import file database **`Database/studybuddy.sql`** ke database tersebut.
+
+### 3. Setup Aplikasi Web (Laravel)
+1. Masuk ke direktori Laravel:
+   ```bash
+   cd Laravel
+   ```
+2. Instal dependensi PHP:
    ```bash
    composer install
    ```
-3. Instal library front-end menggunakan NPM:
+3. Instal dependensi Javascript/CSS:
    ```bash
    npm install
    ```
-4. Salin file `.env.example` menjadi `.env` jika belum ada, lalu sesuaikan koneksi database Anda:
+4. Salin file konfigurasi `.env.example` menjadi `.env`:
+   ```bash
+   copy .env.example .env
+   ```
+5. Konfigurasikan koneksi database di file `.env` Anda:
    ```env
    DB_CONNECTION=mysql
    DB_HOST=127.0.0.1
    DB_PORT=3306
-   DB_DATABASE=studybuddy_uas_fix_fix_bgtt
+   DB_DATABASE=studybuddy
    DB_USERNAME=root
    DB_PASSWORD=
    ```
-5. Generate key Laravel:
+6. Generate application key:
    ```bash
    php artisan key:generate
    ```
-6. Jalankan server Laravel:
+7. Jalankan local development server:
    ```bash
    php artisan serve
    ```
-7. Jalankan compiler asset front-end di terminal terpisah:
+8. Jalankan Vite compiler di terminal terpisah untuk me-render CSS & JS:
    ```bash
    npm run dev
    ```
 
-### C. Menjalankan Job ETL (Pentaho)
-1. Buka **Pentaho Data Integration (Spoon)**.
-2. Buka file job **[etl_dw_sb.kjb](file:///d:/KULIAH/Stubud%20Final/BasDat_Kelompok%204/Pentaho/etl_dw_sb.kjb)** dari folder `Pentaho`.
-3. Jalankan (Run) job tersebut. Seluruh file transformasi `.ktr` (seperti `dim_tutor_sb.ktr`, `dim_siswa_sb.ktr`, dll.) akan otomatis berjalan berurutan menggunakan folder relative path yang telah dioptimasi.
+Aplikasi dapat diakses di browser melalui [http://localhost:8000](http://localhost:8000).
+
+### 4. Menjalankan Job ETL (Pentaho)
+1. Buka **Pentaho Spoon**.
+2. Buka file job **`Pentaho/etl_dw_sb.kjb`**.
+3. Klik **Run** untuk memulai proses ETL. Job ini secara otomatis mengeksekusi semua transformasi (`.ktr`) menggunakan path relatif.
 
 ---
 
-## 8. Penutup
+## 👥 Kontributor (Kelompok 4)
 
-Dengan adanya project Study Buddy, diharapkan sistem basis data yang dirancang mampu menjadi fondasi yang kuat bagi aplikasi layanan tutor privat online. Project ini dikembangkan sebagai bagian dari pembelajaran dan penerapan konsep basis data, serta dapat dijadikan referensi untuk pengembangan sistem informasi pendidikan di masa mendatang.
-
----
-
-
+Project ini dirancang dan dikembangkan sebagai tugas Basis Data oleh:
+1. **Arfianti Fadilah Putri**
+2. **Reihan Maulana Alhaidar**
+3. **Shandika Maurifki Alhudi**
+4. **Arya Putra Permana** (User)
+5. **Azka Saqila Rochman**
