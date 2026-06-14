@@ -162,6 +162,91 @@ erDiagram
 
 ---
 
+## 📊 Skema Data Warehouse (OLAP)
+
+Untuk mendukung analisis data dan kebutuhan bisnis (seperti analisis pendapatan, pendaftaran siswa, dan produktivitas tutor), data operasional diekstrak dan ditransformasikan ke dalam skema bintang (Star Schema) pada database Data Warehouse (`studybuddy_dw`).
+
+### 1. Struktur Tabel Dimensi & Fakta (Dimensional Model)
+
+Berikut adalah hubungan antar tabel dimensi dan tabel fakta yang di-load melalui Pentaho Data Integration (PDI):
+
+```mermaid
+erDiagram
+    DIM_SISWA_SB {
+        int sk_siswa PK "Surrogate Key"
+        string siswa_id
+        string nama
+        string jenis_kelamin
+        string jenjang
+        int durasi
+        date tanggal_daftar
+    }
+    DIM_TUTOR_SB {
+        int sk_tutor PK "Surrogate Key"
+        string tutor_id
+        string nama
+        string jenis_kelamin
+    }
+    DIM_MAPEL_SB {
+        int sk_mapel PK "Surrogate Key"
+        string mapel_id
+        string jenjang
+        string sesi
+        string nama_mapel
+    }
+    DIM_WAKTU {
+        int sk_waktu PK "Surrogate Key"
+        date tanggal
+        int tahun
+        int bulan_ke
+        int hari
+        int triwulan
+    }
+    FACT_PENDAPATAN_SB {
+        int sk_siswa FK
+        int sk_mapel FK
+        int sk_waktu FK
+        decimal pendapatan "Measure"
+    }
+    FACT_PENDAFTARAN_SISWA_SB {
+        int sk_siswa FK
+        int sk_mapel FK
+        int sk_waktu FK
+        int jumlah_pendaftaran "Measure"
+    }
+    FACT_TUTOR_SB {
+        int sk_tutor FK
+        int sk_mapel FK
+        int sk_waktu FK
+        int jumlah_tutor "Measure"
+    }
+
+    DIM_SISWA_SB ||--o{ FACT_PENDAPATAN_SB : "sk_siswa"
+    DIM_MAPEL_SB ||--o{ FACT_PENDAPATAN_SB : "sk_mapel"
+    DIM_WAKTU ||--o{ FACT_PENDAPATAN_SB : "sk_waktu"
+
+    DIM_SISWA_SB ||--o{ FACT_PENDAFTARAN_SISWA_SB : "sk_siswa"
+    DIM_MAPEL_SB ||--o{ FACT_PENDAFTARAN_SISWA_SB : "sk_mapel"
+    DIM_WAKTU ||--o{ FACT_PENDAFTARAN_SISWA_SB : "sk_waktu"
+
+    DIM_TUTOR_SB ||--o{ FACT_TUTOR_SB : "sk_tutor"
+    DIM_MAPEL_SB ||--o{ FACT_TUTOR_SB : "sk_mapel"
+    DIM_WAKTU ||--o{ FACT_TUTOR_SB : "sk_waktu"
+```
+
+### 2. Deskripsi Tabel Data Warehouse
+- **Tabel Dimensi**:
+  - `dim_siswa_sb`: Menyimpan data profil siswa seperti nama, jenis kelamin, dan jenjang sekolah, lengkap dengan riwayat durasi kelas yang diambil.
+  - `dim_tutor_sb`: Menyimpan data profil tutor yang terdaftar (ID, nama, dan jenis kelamin).
+  - `dim_mapel_sb`: Menyimpan data mata pelajaran beserta informasi jenjang dan sesi jadwal mengajarnya.
+  - `dim_waktu`: Tabel dimensi waktu yang di-generate untuk memetakan tanggal transaksi/aktivitas ke dalam tahun, bulan, hari, dan triwulan (kuartal).
+- **Tabel Fakta**:
+  - `fact_pendapatan_sb`: Menyimpan metrik pendapatan bersih yang diperoleh berdasarkan pendaftaran kelas siswa pada waktu tertentu.
+  - `fact_pendaftaran_siswa_sb`: Menyimpan jumlah pendaftaran kelas oleh siswa untuk menganalisis tren minat belajar.
+  - `fact_tutor_sb`: Menyimpan jumlah tutor aktif untuk menganalisis produktivitas dan alokasi tutor berdasarkan mata pelajaran dan waktu.
+
+---
+
 ## 📂 Struktur Direktori
 
 ```bash
